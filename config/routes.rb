@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root to: 'microposts#index'
+  resources :microposts, only: [:index, :new, :create, :destroy]
+
   
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
