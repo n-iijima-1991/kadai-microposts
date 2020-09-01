@@ -2,11 +2,10 @@ class MicropostsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user, only: [:destroy]
   def index
-    @microposts = Micropost.all.order(id: :desc).page(params[:page]).per(30)
-    #if logged_in?
-     # @micropost = current_user.microposts.build
-      #@microposts = current_user.microposts.order(id: :desc).page(params[:page])
-    #end
+    if logged_in?
+      @micropost = current_user.microposts.build
+      @microposts = current_user.microposts.order(id: :desc).page(params[:page])
+    end
   end
 
   def new
